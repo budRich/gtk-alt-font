@@ -1,1 +1,3 @@
-short description  
+override GTK_ALT_FONT
+
+Defaults to "Noto Sans 12"

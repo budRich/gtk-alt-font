@@ -2,4 +2,4 @@
 --sleep|-t SECONDS
 --verbose
 --help|-h
---version|-V
+--version|-v
