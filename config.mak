@@ -6,7 +6,7 @@ DESCRIPTION  := Start programs with an alternative GTK font
 AUTHOR       := budRich
 CONTACT      := https://github.com/budRich/gtk-alt-font
 ORGANISATION := budlabs
-USAGE        := $(NAME) [FONT] -- COMMAND
+USAGE        := $(NAME) [OPTIONS] -- COMMAND
 
 MONOLITH     := _$(NAME)
 

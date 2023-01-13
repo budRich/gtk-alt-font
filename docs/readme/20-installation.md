@@ -17,7 +17,7 @@ $ cd gtk-alt-font
 $ make
 # make install
 $ gtk-alt-font -h
-usage: gtk-alt-font [FONT] -- COMMAND
+usage: gtk-alt-font [OPTIONS] -- COMMAND
 
 
 -f, --font    FONT    | override GTK_ALT_FONT
