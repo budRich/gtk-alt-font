@@ -36,8 +36,8 @@ font.
 
 Below are two screenshots of this repo opened in VSCode:  
 `code .`  
-![code-default](docs/readme/img/code-default)  
+![code-default](docs/readme/img/code-default.png)  
 
 `gtk-alt-font -- code .`  
-![code-fixed](docs/readme/img/code-fixed)  
+![code-fixed](docs/readme/img/code-fixed.png)  
 
