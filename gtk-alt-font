@@ -1,0 +1,56 @@
+#!/bin/bash
+
+declare -r system_font="Noto Sans 12"
+
+main(){
+
+  (
+    current_font=$(get_system_font)
+    set_system_font "$system_font"
+    sleep 3
+    set_system_font "$current_font"
+  ) &
+
+  exec "$@"
+}
+
+set_system_font() {
+
+  # sed -ri "s/(gtk-font-name=).+/\1$1/" "$gtkrc"
+  # gtkrc-reload
+
+  if command -v xfconf-query > /dev/null ; then
+    xfconf-query --create                 \
+                 --channel xsettings      \
+                 --property /Gtk/FontName \
+                 --type string            \
+                 --set "$1"
+  else
+    ERM xfconf-query command not found
+  fi
+
+}
+
+get_system_font() {
+
+  # re='gtk-font-name=(.+)'
+  # while read -r line ; do
+
+  #   [[ $line =~ $re ]] && {
+  #     echo "${BASH_REMATCH[1]}"
+  #     break
+  #   }
+  # done < "$gtkrc"
+
+  if command -v xfconf-query > /dev/null ; then
+    xfconf-query --create                 \
+                 --channel xsettings      \
+                 --property /Gtk/FontName
+  else
+    ERM xfconf-query command not found
+  fi
+  
+}
+
+__dir=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")") #bashbud
+source "$__dir/_init.sh"                              #bashbud

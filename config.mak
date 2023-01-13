@@ -1,12 +1,12 @@
-NAME        := xfce4-tmp-gtk-settings
-CREATED     := 2023-01-13
-UPDATED      := today
-VERSION      := 0
-DESCRIPTION  := short description for the script
+NAME         := gtk-alt-font
+CREATED      := 2023-01-13
+UPDATED      := 2023-01-13
+VERSION      := 0.1
+DESCRIPTION  := Start programs with an alternative GTK font
 AUTHOR       := budRich
-CONTACT      := https://github.com/budlabs
+CONTACT      := https://github.com/budRich/gtk-alt-font
 ORGANISATION := budlabs
-USAGE        := $(NAME) [OPTIONS]
+USAGE        := $(NAME) [FONT]
 
 MONOLITH     := _$(NAME)
 
