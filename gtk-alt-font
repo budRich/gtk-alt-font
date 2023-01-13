@@ -4,7 +4,8 @@ _font=${_o[font]:-${GTK_ALT_FONT:-"Noto Sans 12"}}
 
 main(){
 
-  [[ $* ]] || ERX "missing COMMAND"
+  command_is_valid "$@" \
+    || ERX "missing or invalid COMMAND"
 
   xfsettings_is_running \
     || ERX "xfsettingsd is not running"
@@ -20,6 +21,11 @@ main(){
   ) &
 
   exec "$@"
+}
+
+command_is_valid() {
+  [[ $* ]] && command -v $1 >/dev/null && return
+  return 1
 }
 
 xfsettings_is_running() {
