@@ -10,7 +10,8 @@ USAGE        := $(NAME) [FONT] -- COMMAND
 
 MONOLITH     := _$(NAME)
 
-README.md: $(wildcard $(DOCS_DIR)/readme/*.md)
+README_FILES := $(wildcard $(DOCS_DIR)/readme/*.md)
+README.md: $(README_FILES)
 	@$(making $@)
 	{
 	  cat $^

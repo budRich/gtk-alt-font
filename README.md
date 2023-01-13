@@ -1,12 +1,3 @@
-Below are two screenshots of this repo opened in VSCode:  
-`code .`  
-![code-default](docs/readme/img/code-default)  
-
-`gtk-alt-font -- code .`  
-![code-fixed](docs/readme/img/code-fixed)  
-
----
-
 This script will temporarily set a alternative
 GTK_FONT while launching a COMMAND. I like to use
 a very specific font that doesn't *work* if
@@ -18,7 +9,7 @@ is possible to set up rules for fonts in
 applications (including f.i. electron), ignores
 the fontconfig settings. This combined with the
 trend among webdevs to use `system-ui` as the font
-on webpages and apps makes stuff unreadable.  
+on webpages makes the web unreadable.  
 
 It is possible to start such applications with
 alternative gtk settings files. But it is a bit
@@ -43,7 +34,12 @@ sleep 3 seconds (override with `--sleep`) in the background
 while launching a COMMAND , and then revert to the original
 font.
 
+Below are two screenshots of this repo opened in VSCode:  
+`code .`  
+![code-default](docs/readme/img/code-default.png)  
 
+`gtk-alt-font -- code .`  
+![code-fixed](docs/readme/img/code-fixed.png)  
 
 ## installation
 
