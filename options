@@ -1,2 +1,5 @@
+--font|-f FONT
+--sleep|-t SECONDS
+--verbose
 --help|-h
---version|-v
+--version|-V

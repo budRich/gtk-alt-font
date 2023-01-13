@@ -1,54 +1,49 @@
 #!/bin/bash
 
-declare -r system_font="Noto Sans 12"
+_font=${_o[font]:-${GTK_ALT_FONT:-"Noto Sans 12"}}
 
 main(){
 
+  [[ $* ]] || ERX "missing COMMAND"
+
+  xfsettings_is_running \
+    || ERX "xfsettingsd is not running"
+
+  xfconf_query_command_exist \
+    || ERX "xfconf-query command not found"
+
   (
-    current_font=$(get_system_font)
-    set_system_font "$system_font"
-    sleep 3
-    set_system_font "$current_font"
+    current_font=$(get_gtk_font)
+    set_gtk_font "$_font"
+    sleep "${_o[sleep]:-3}"
+    set_gtk_font "$current_font"
   ) &
 
   exec "$@"
 }
 
-set_system_font() {
-
-  # sed -ri "s/(gtk-font-name=).+/\1$1/" "$gtkrc"
-  # gtkrc-reload
-
-  if command -v xfconf-query > /dev/null ; then
-    xfconf-query --create                 \
-                 --channel xsettings      \
-                 --property /Gtk/FontName \
-                 --type string            \
-                 --set "$1"
-  else
-    ERM xfconf-query command not found
-  fi
-
+xfsettings_is_running() {
+  pidof xfsettingsd >/dev/null || return 1
 }
 
-get_system_font() {
+xfconf_query_command_exist() {
+  command -v xfconf-query > /dev/null || return 1
+}
 
-  # re='gtk-font-name=(.+)'
-  # while read -r line ; do
+set_gtk_font() {
 
-  #   [[ $line =~ $re ]] && {
-  #     echo "${BASH_REMATCH[1]}"
-  #     break
-  #   }
-  # done < "$gtkrc"
+  xfconf-query --create                 \
+               --channel xsettings      \
+               --property /Gtk/FontName \
+               --type string            \
+               --set "$1"
+}
 
-  if command -v xfconf-query > /dev/null ; then
-    xfconf-query --create                 \
-                 --channel xsettings      \
-                 --property /Gtk/FontName
-  else
-    ERM xfconf-query command not found
-  fi
+get_gtk_font() {
+
+  xfconf-query --create                 \
+               --channel xsettings      \
+               --property /Gtk/FontName
   
 }
 
